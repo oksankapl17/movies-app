@@ -12,7 +12,7 @@ import { Header } from "./components/Header/Header";
 
 axios.defaults.headers.common[
   "Authorization"
-] = `Bearer ${process.env.REACT_ACCESS_TOKEN}`;
+] = `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`;
 
 function DummyComponent() {
   return <h2>Dummy Component here!</h2>;
