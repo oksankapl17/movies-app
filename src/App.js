@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Redirect, Route, Switch,} from "react-router-dom";
+import HomePage from "./containers/HomePage/Home-Page";
+import axios from 'axios';
+import MoviePage from "./containers/MoviePage/MoviePage";
+import {Header} from "./components/Header/Header";
 
-function App() {
+axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZTI0YjcyYjk2NDdmMmJjYzE4YWYzMDBkMjVhMzcxYyIsInN1YiI6IjVlMDI1OTk4MjZkYWMxMDAxNzY3ZGM0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WTN7Kedufy2A5uc2QDsYMW9oMsLz9ufpYGB_J0pExlQ`;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Header/>
+        <Switch>
+          <Route path="/movie">
+            <DummyComponent/>
+          </Route>
+          <Route exact path="/">
+            <HomePage/>
+          </Route>
+          <Route
+            path="/movie/:id"
+            render={(routeProps) => <MoviePage {...routeProps} />}
+          />
+          <Redirect
+            from="*"
+            to={{
+              pathname: "/not-found",
+            }}
+          />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
-export default App;
+function DummyComponent() {
+  return <h2>Dummy Component here!</h2>;
+}
+
+function NotFound() {
+  return <h2>Page Not Found!</h2>;
+}
