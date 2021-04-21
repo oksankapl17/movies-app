@@ -5,7 +5,7 @@ import axios from 'axios';
 import MoviePage from "./containers/MoviePage/MoviePage";
 import {Header} from "./components/Header/Header";
 
-axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZTI0YjcyYjk2NDdmMmJjYzE4YWYzMDBkMjVhMzcxYyIsInN1YiI6IjVlMDI1OTk4MjZkYWMxMDAxNzY3ZGM0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WTN7Kedufy2A5uc2QDsYMW9oMsLz9ufpYGB_J0pExlQ`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.REACT_ACCESS_TOKEN}`;
 
 export default function App() {
   return (
